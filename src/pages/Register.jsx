@@ -1,20 +1,24 @@
 import { Button, TextField, Typography } from '@mui/material'
-import { fontFamily } from '@mui/system'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CenterLayout } from '../layout'
 
 function Register() {
-  // stepper, usseForm, customHook
-  // send password and username to auth
   const userRegistrationLabels = ["Name", "Email Address", "Password"]
   const navigate = useNavigate()
 
   const navigateToLogin = () => {
     navigate('/login')
   }
+
   return (
-    <div> // TODO: button background color
+    // TODO: button background color
+    // TODO: validation
+    // TODO: responsive
+    // TODO: side effect to auth server, send ac + pw
+    // TODO: stepper >>> for multiple step, useForm, customHook
+
+    <div>
       <CenterLayout>
         <Typography color="purple.medium" style={{ letterSpacing: '1px' }}>
           <div style={{ padding: '5px' }}><b>Welcome to Good Card!</b></div>
