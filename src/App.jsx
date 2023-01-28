@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Error, Home, Login, NotFound, Register } from './pages'
+import { DevTest, Error, Home, Login, NotFound, Register } from './pages'
 import { RootLayout } from './layout'
 
 function App() {
@@ -26,6 +26,9 @@ function App() {
 
           {/* NOTE: Error Page */}
           <Route path="/error" element={<Error />} />
+
+          {/* NOTE: For Dev test use */}
+          <Route path="/dev" element={<DevTest />} />
 
           {/* NOTE: catch all */}
           <Route path="*" element={<NotFound />} />

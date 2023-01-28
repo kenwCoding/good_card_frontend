@@ -6,7 +6,8 @@ import { blue } from '@mui/material/colors'
 const style = {
   bgcolor: blue[50],
   height: '100vh',
-  width: '100vw'
+  width: '100vw',
+  maxWidth: '100vw !important'
 }
 
 function RootLayout() {
