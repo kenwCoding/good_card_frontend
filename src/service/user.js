@@ -9,6 +9,18 @@ const registerUser = async (payload) => {
     return res.data
 }
 
+const checkAuthUser = async (payload) => {
+    const res = await axios.post(`${SOURCE_SERVER_BASE_URL}/user/sample`, payload, {
+        headers:{
+            Authorization: `Bearer ${payload.accessToken}`
+        },
+        withCredntials: true,
+        credentials: 'include',        
+    })
+    return res.data
+}
+
 export {
-    registerUser
+    registerUser,
+    checkAuthUser
 }
