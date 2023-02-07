@@ -10,18 +10,18 @@ function App() {
         <Route path="/" element={<RootLayout />}>
           {/* NOTE: Public Route */}
           {/* <Route element={<AuthConditionalRoute authRoles={[ROLES.UNAUTH, ROLES.BLACK_LISTED]} redirectTo="/" />}> */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           {/* </Route> */}
 
           {/* NOTE: Admin Route */}
           {/* <Route element={<AuthConditionalRoute authRoles={[ROLES.ADMIN]} redirectTo="/" />}> */}
-            <Route path="/admin" element={<Home role='admin' />} />
+          <Route path="/admin" element={<Home role='admin' />} />
           {/* </Route> */}
 
           {/* NOTE: Authed General Route */}
           {/* <Route element={<AuthConditionalRoute authRoles={[ROLES.ADMIN, ROLES.USER]} redirectTo="/login" />}> */}
-            <Route path="/" element={<Home role='general' />} />
+          <Route path="/" element={<Home role='general' />} />
           {/* </Route> */}
 
           {/* NOTE: Error Page */}
