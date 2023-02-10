@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuth } from '../hooks'
 import { CenterLayout } from '../layout'
-import { checkAuthUser, loginUser, registerUser } from '../service'
+import { checkAuthUser, loginUser, logoutUser, registerUser } from '../service'
 
 function DevTest() {
     const { setAuth, auth } = useAuth()
@@ -9,52 +9,45 @@ function DevTest() {
         <CenterLayout>
             <button
                 onClick={ async() => {
-                    await registerUser({
+                    const { message } = await registerUser({
                         username: 'abcde123',
                         password: 'abcde123',
                         role: 'user',
                         provider: 'local'
                     })
+                    console.log(message);
                 }}
             >
                 register
             </button>
             <button
                 onClick={ async() => {
-                    const { accessToken } = await loginUser({
+                    const { message } = await loginUser({
                         username: 'abcde123',
                         password: 'abcde123',
                         role: 'user',
                         provider: 'local'
                     })
-
-                    if (accessToken) {
-                        setAuth({
-                            username: 'abcde123',
-                            password: 'abcde123',
-                            role: 'user',
-                            provider: 'local',
-                            accessToken: accessToken
-                        })
-                    }
+                    console.log(message);
                 }}
             >
                 login
             </button>
             <button
-                onClick={ async() => {
-                    const res = await checkAuthUser({
-                        username: 'abcde123',
-                        password: 'abcde123',
-                        role: 'user',
-                        provider: 'local',
-                        accessToken: auth.accessToken
-                    })
-                    // const result = await res.json()
-                    console.log('Auth Result: ', res.message);
-                }}
+                onClick={ async() => checkAuthUser({
+                    username: 'abcde123',
+                    password: 'abcde123',
+                    role: 'user',
+                    provider: 'local',
+                })
+            }
             >
                 test auth
+            </button>
+            <button
+                onClick={ async() => logoutUser()}
+            >
+                Logout
             </button>
         </CenterLayout>
     )
