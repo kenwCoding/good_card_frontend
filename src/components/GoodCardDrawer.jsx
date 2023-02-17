@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider, Drawer, IconButton, ListItem, ListItemIcon, styled, Typography, useTheme } from '@mui/material'
+import { Button, Divider, Drawer, IconButton, ListItem, ListItemIcon, styled, Typography, useTheme } from '@mui/material'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { BookmarkAdd, AddCard, Book, GppGood } from '@mui/icons-material'
@@ -30,6 +30,11 @@ const getDrawerItemIcon = (button) => {
     }
 }
 
+const StyledButton = styled(Button)`
+  &:hover {
+    background: none;
+  }
+`
 
 export const GoodCardDrawer = ({ drawerIsOpen = null, setDrawerIsOpen = () => { } }) => {
     const theme = useTheme()
@@ -61,7 +66,13 @@ export const GoodCardDrawer = ({ drawerIsOpen = null, setDrawerIsOpen = () => { 
                         return (
                             <ListItem key={datum}>
                                 <ListItemIcon>{getDrawerItemIcon(datum)}</ListItemIcon>
-                                <a href={`/${datum.toLowerCase()}`}>{datum}</a>
+                                <StyledButton
+                                    onClick={() => { window.location.assign(datum.toLowerCase()) }}
+                                    // onMouseEnter={() => { console.log('mouse is in') }}
+                                    style={{ backgroundColor: 'transparent' }}
+                                >
+                                    {datum.toLowerCase()}
+                                </StyledButton>
                             </ListItem>
                         )
                     })

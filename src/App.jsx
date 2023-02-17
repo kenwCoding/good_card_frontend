@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Error, Home, Login, NotFound, Register } from './pages'
 import { RootLayout } from './layout'
+import { Cards } from './pages/Cards'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
           {/* <Route element={<AuthConditionalRoute authRoles={[ROLES.UNAUTH, ROLES.BLACK_LISTED]} redirectTo="/" />}> */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/cards" element={<Cards />} />
           {/* </Route> */}
 
           {/* NOTE: Admin Route */}
