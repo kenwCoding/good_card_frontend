@@ -1,5 +1,15 @@
-# Frontend Repo
+# Repos
+- Frontend Web App
 https://github.com/kenwCoding/good_card_frontend
+
+- Source Backend Server
+https://github.com/kenwCoding/good_card_backend
+
+- Auth Backend Server
+https://github.com/kenwCoding/good_card_auth
+
+- SMTP Email Server
+https://github.com/kenwCoding/good_card_smtp
 
 # Other Ports
 - Source Server: localhost:3001
