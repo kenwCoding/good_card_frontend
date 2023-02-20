@@ -1,54 +1,74 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useAuth } from '../hooks'
 import { CenterLayout } from '../layout'
 import { checkAuthUser, loginUser, logoutUser, registerUser } from '../service'
 
+/* NOTE: 
+    For Dev Use,
+    Can modify with anything in anytime
+
+    Path: '/dev'
+*/
 function DevTest() {
     const { setAuth, auth } = useAuth()
+    const { message } = useState('')
     return (
         <CenterLayout>
             <button
                 onClick={ async() => {
-                    const { message } = await registerUser({
+                    const { message, userInfo } = await registerUser({
                         username: 'abcde123',
                         password: 'abcde123',
                         role: 'user',
                         provider: 'local'
                     })
-                    console.log(message);
+                    const { username, role, provider} = userInfo
+                    console.log('Msg.:', message);
+                    console.log(`${role}: ${username} register successfully from ${provider}`);
                 }}
             >
                 register
             </button>
             <button
                 onClick={ async() => {
-                    const { message } = await loginUser({
+                    const { message, userInfo, accessToken } = await loginUser({
                         username: 'abcde123',
                         password: 'abcde123',
                         role: 'user',
                         provider: 'local'
                     })
+                    userInfo['accessToken'] = accessToken 
+                    setAuth(userInfo)
                     console.log(message);
                 }}
             >
                 login
             </button>
             <button
-                onClick={ async() => checkAuthUser({
-                    username: 'abcde123',
-                    password: 'abcde123',
-                    role: 'user',
-                    provider: 'local',
-                })
+                onClick={ async() => {
+                    const { message, userInfo, accessToken } = await checkAuthUser({
+                        accessToken: auth.accessToken
+                    })
+
+                    console.log(message);
+
+                    setAuth({
+                        ...userInfo,
+                        accessToken
+                    })
+                }
             }
             >
                 test auth
             </button>
             <button
-                onClick={ async() => logoutUser()}
+                onClick={ async() => {
+                    await logoutUser()
+                }}
             >
                 Logout
             </button>
+            <>{message}</>
         </CenterLayout>
     )
 }

@@ -5,9 +5,12 @@ const INIT_AUTH_STATE = {
     username: '',
     role: '',
     provider: '',
-    authToken: '',
+    accessToken: ''
 }
 
+/* NOTE: 
+    For global use
+*/
 const AuthContext = createContext()
 
 function AuthProvider(props) {
@@ -21,11 +24,11 @@ function AuthProvider(props) {
         <AuthContext.Provider value = {{
             auth,
             setAuth,
-            initAuth
+            initAuth,
         }}>
             {props.children}
         </AuthContext.Provider>
     )
 }
 
-export { AuthProvider, AuthContext }
+export { AuthProvider, AuthContext, INIT_AUTH_STATE }
