@@ -1,5 +1,4 @@
 import axios from "axios"
-import { INIT_AUTH_STATE } from "../context/AuthContext"
 
 const SOURCE_SERVER_BASE_URL = import.meta.env.VITE_SOURCE_SERVER_BASE_URL
 
