@@ -13,7 +13,7 @@ const style = {
 function RootLayout() {
   return (
     <Container sx={style}>
-        <Outlet/>
+      <Outlet />
     </Container>
   )
 }

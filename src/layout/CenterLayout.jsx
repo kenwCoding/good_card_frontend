@@ -6,7 +6,8 @@ const style = {
   width: '100%',
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center'
+  alignItems: 'center',
+  marginLeft: '250px'
 }
 
 function CenterLayout(props) {
