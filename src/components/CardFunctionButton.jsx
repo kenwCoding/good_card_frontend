@@ -31,7 +31,7 @@ function CardFunctionButton() {
                     <Button
                         key={index}
                         variant='contained'
-                        style={{
+                        sx={{
                             borderRadius: '5px',
                             paddingTop: '10px',
                             marginTop: '100px',

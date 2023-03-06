@@ -48,10 +48,10 @@ const featureButtonHandler = (button) => {
   }
 }
 
-export const Navbar = ({ drawerIsOpen = null, setDrawerIsOpen = () => { } }) => {
+export const Navbar = () => {
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false)
   const featureButtons = ["ChangeMode", "Mails", "Notifications", "AccountCircle", 'Settings']
   const drawerWidth = '240px'
-  console.log(window.innerWidth > 600 ? `calc(100% - ${drawerWidth} px)` : '100%')
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar

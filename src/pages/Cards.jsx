@@ -1,27 +1,59 @@
 import React from 'react';
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import { FLASH_CARDS_MOCK_DATA } from '../utils/flashCardsMockData'
 import { CardItem, CardFunctionButton } from '../components';
 
 function OverviewSection() {
+    const COUNT_KEY = ['Total', 'Learned', 'Starred']
+    const countSwitch = (countKey) => {
+        switch (countKey) {
+            case 'Total': return FLASH_CARDS_MOCK_DATA.length
+            case 'Learned': return FLASH_CARDS_MOCK_DATA.map(datum => {
+                datum.tag.filter(datumTag => { datumTag !== 'Learned' })
+            }).length
+            case 'Starred': return FLASH_CARDS_MOCK_DATA.map(datum => {
+                datum.tag.filter(datumTag => { datumTag !== 'Learned' })
+            }).length
+            default: break
+        }
+    }
+
     return (
-        <div>
-            <div className='row'>
-                <strong style={{ color: 'purple', margin: '20px' }}>Overview</strong>
-            </div>
-            <div className='row'><div style={{ color: 'purple', margin: '20px' }}>Total</div></div>
-            <div className='row'><div style={{ color: 'purple', margin: '20px' }}>{FLASH_CARDS_MOCK_DATA.length}</div></div>
-            <div style={{ color: 'purple', margin: '20px' }}>Learned</div>
-            <div style={{ color: 'purple', margin: '20px' }}>
-                {FLASH_CARDS_MOCK_DATA.map(datum => {
-                    datum.tag.filter(datumTag => { datumTag !== 'Learned' })
-                }).length}</div>
-            <div style={{ color: 'purple', margin: '20px' }}>Starred</div>
-            <div style={{ color: 'purple', margin: '20px' }}>
-                {FLASH_CARDS_MOCK_DATA.map(datum => {
-                    datum.tag.filter(datumTag => { datumTag !== 'Learned' })
-                }).length}</div>
-        </div>
+        <Grid container sx={{ marginBottom: '20px' }}>
+            {COUNT_KEY.map((countKey) => {
+                return (
+                    <Paper
+                        key={countKey}
+                        sx={{
+                            p: 2,
+                            m: 'auto',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            maxWidth: 500,
+                            width: 'auto',
+                            backgroundColor: (theme) =>
+                                theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+                        }}>
+                        <Grid item xs={4} sm container>
+                            <Grid item xs container direction="column" spacing={2}>
+                                <Grid item xs>
+                                    <Typography gutterBottom variant="subtitle1" component="div">
+                                        {countSwitch(countKey)}
+                                    </Typography>
+                                </Grid>
+                                <Grid item>
+                                    <Typography sx={{ cursor: 'pointer' }} variant="body2">
+                                        {countKey}
+                                    </Typography>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Paper>
+                )
+            })}
+        </Grid>
     )
 }
 
