@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { DevTest, Error, Home, Login, NotFound, Register, Cards } from './pages'
 import { RootLayout } from './layout'
 import { Protected } from './components'
+import { useWindowSize } from './hooks'
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>

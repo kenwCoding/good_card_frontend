@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Divider, Drawer, IconButton, ListItem, ListItemIcon, styled, Typography, useTheme } from '@mui/material'
+import { Box, Button, Divider, Drawer, IconButton, ListItem, ListItemIcon, styled, Typography, useTheme } from '@mui/material'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { BookmarkAdd, AddCard, Book, GppGood } from '@mui/icons-material'
@@ -83,13 +83,14 @@ export const GoodCardDrawer = ({ drawerIsOpen = null, setDrawerIsOpen = () => { 
 
     return (
         <>
+              {/* Fixed Drawer state for small size */}
             <Drawer
                 anchor='left'
                 sx={{
-                    width: drawerWidth,
+                    width: 0,
                     flexShrink: 0,
                     '& .MuiDrawer-paper': {
-                        width: drawerWidth,
+                        width: 0,
                         boxSizing: 'border-box',
                     },
                 }}
@@ -98,11 +99,14 @@ export const GoodCardDrawer = ({ drawerIsOpen = null, setDrawerIsOpen = () => { 
                 onClose={handleDrawerClose}>
                 <DrawContent handleDrawerClose={handleDrawerClose} showArrowBackIcon='true' />
             </Drawer>
+            
+            {/* Fixed Drawer state for non-small size */}
             <Drawer
                 variant="permanent"
                 sx={{
-                    display: { xs: 'none', sm: 'block' },
+                    display: { xs: 'none', sm: 'fixed' },
                     '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                    paddingLeft: drawerWidth
                 }}
                 open>
                 <DrawContent />

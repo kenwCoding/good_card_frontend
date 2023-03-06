@@ -4,7 +4,7 @@ import React from 'react'
 function CardItem(props) {
     const { datum, index } = props
     return (
-        <Card style={{ minWidth: '275px', height: '275px' }} key={index}>
+        <Card style={{ width: '100%', height: '100%' }} key={index}>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     Software Engineer Set

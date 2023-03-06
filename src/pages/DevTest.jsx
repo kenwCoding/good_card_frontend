@@ -4,25 +4,26 @@ import { CenterLayout } from '../layout'
 import { checkAuthUser, loginUser, logoutUser, registerUser } from '../service'
 
 /* NOTE: 
-    For Dev Use,
-    Can modify with anything in anytime
+For Dev Use,
+Can modify with anything in anytime
 
-    Path: '/dev'
+Path: '/dev'
 */
 function DevTest() {
     const { setAuth, auth } = useAuth()
+    console.log(auth)
     const { message } = useState('')
     return (
-        <CenterLayout>
+        <>
             <button
-                onClick={ async() => {
+                onClick={async () => {
                     const { message, userInfo } = await registerUser({
                         username: 'abcde123',
                         password: 'abcde123',
                         role: 'user',
                         provider: 'local'
                     })
-                    const { username, role, provider} = userInfo
+                    const { username, role, provider } = userInfo
                     console.log('Msg.:', message);
                     console.log(`${role}: ${username} register successfully from ${provider}`);
                 }}
@@ -30,14 +31,14 @@ function DevTest() {
                 register
             </button>
             <button
-                onClick={ async() => {
+                onClick={async () => {
                     const { message, userInfo, accessToken } = await loginUser({
                         username: 'abcde123',
                         password: 'abcde123',
                         role: 'user',
                         provider: 'local'
                     })
-                    userInfo['accessToken'] = accessToken 
+                    userInfo['accessToken'] = accessToken
                     setAuth(userInfo)
                     console.log(message);
                 }}
@@ -45,7 +46,7 @@ function DevTest() {
                 login
             </button>
             <button
-                onClick={ async() => {
+                onClick={async () => {
                     const { message, userInfo, accessToken } = await checkAuthUser({
                         accessToken: auth.accessToken
                     })
@@ -57,19 +58,19 @@ function DevTest() {
                         accessToken
                     })
                 }
-            }
+                }
             >
                 test auth
             </button>
             <button
-                onClick={ async() => {
+                onClick={async () => {
                     await logoutUser()
                 }}
             >
                 Logout
             </button>
             <>{message}</>
-        </CenterLayout>
+        </>
     )
 }
 

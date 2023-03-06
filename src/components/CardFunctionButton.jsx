@@ -26,9 +26,10 @@ const cardFunctions = [
 function CardFunctionButton() {
     return (
         <div style={{ minHeight: '150px' }}>
-            {cardFunctions.map(datum => {
+            {cardFunctions.map((datum, index) => {
                 return (
                     <Button
+                        key={index}
                         variant='contained'
                         style={{
                             borderRadius: '5px',
