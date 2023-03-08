@@ -4,6 +4,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { FLASH_CARDS_MOCK_DATA } from '../utils/flashCardsMockData'
 import { CardItem, CardFunctionButton } from '../components';
+import { Button } from '@mui/material';
 
 function OverviewSection() {
     const COUNT_KEY = ['Total', 'Learned', 'Starred']
@@ -21,22 +22,27 @@ function OverviewSection() {
     }
 
     return (
-        <Grid container sx={{ marginBottom: '20px' }}>
+        <Grid container direction="row" justifyContent="space-between" alignItems="center">
             {COUNT_KEY.map((countKey) => {
                 return (
-                    <Paper
+                    <Button
                         key={countKey}
+                        disableRipple={true}
+                        variant="raised"
                         sx={{
+                            ":hover": {
+                                bgcolor: 'white'
+                            },
                             p: 2,
                             m: 'auto',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            maxWidth: 500,
-                            width: 'auto',
+                            marginBottom: '20px',
+                            borderRadius: '10px',
+                            width: '100px',
+                            color: 'purple',
                             backgroundColor: (theme) =>
                                 theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                         }}>
-                        <Grid item xs={4} sm container>
+                        <Grid>
                             <Grid item xs container direction="column" spacing={2}>
                                 <Grid item xs>
                                     <Typography gutterBottom variant="subtitle1" component="div">
@@ -50,7 +56,7 @@ function OverviewSection() {
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </Paper>
+                    </Button>
                 )
             })}
         </Grid>
