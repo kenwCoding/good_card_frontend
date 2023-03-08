@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { DevTest, Error, Home, Login, NotFound, Register, Cards } from './pages'
 import { RootLayout } from './layout'
 import { Protected } from './components'
-import { useWindowSize } from './hooks'
 
+// NOTE - redirect to browser, game, listen, test, total, learned, starred based on query >>> <QUERY>/<FEATURE>
 function App() {
   return (
     <BrowserRouter>
