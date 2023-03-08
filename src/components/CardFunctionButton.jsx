@@ -30,8 +30,12 @@ function CardFunctionButton() {
                 return (
                     <Button
                         key={index}
-                        variant='contained'
+                        disableRipple={true}
+                        variant="raised"
                         sx={{
+                            ":hover": {
+                                bgcolor: datum.backgroundColor,
+                            },
                             borderRadius: '5px',
                             paddingTop: '10px',
                             marginTop: '100px',
