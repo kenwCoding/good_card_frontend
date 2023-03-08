@@ -8,7 +8,7 @@ import { Button } from '@mui/material';
 
 // NOTE - Card page based on the card set selection
 // NOTE - card set >>> card >>> feature and its overview
-// NOTE - Route shoule be link up with the card set
+// NOTE - Route shoule be link up with the card sset
 function OverviewSection() {
     const COUNT_KEY = ['Total', 'Learned', 'Starred']
     const countSwitch = (countKey) => {
@@ -32,7 +32,7 @@ function OverviewSection() {
                             ":hover": {
                                 bgcolor: 'white'
                             },
-                            p: 2,
+                            p: 1,
                             m: 'auto',
                             marginBottom: '20px',
                             borderRadius: '10px',

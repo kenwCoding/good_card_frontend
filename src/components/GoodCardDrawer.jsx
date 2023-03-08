@@ -86,7 +86,7 @@ export const GoodCardDrawer = ({ drawerIsOpen = null, setDrawerIsOpen = () => { 
             <Drawer
                 anchor='left'
                 sx={{
-                    width: drawerWidth,
+                    width: 0,
                     flexShrink: 0,
                     '& .MuiDrawer-paper': {
                         width: drawerWidth,
@@ -98,12 +98,16 @@ export const GoodCardDrawer = ({ drawerIsOpen = null, setDrawerIsOpen = () => { 
                 onClose={handleDrawerClose}>
                 <DrawContent handleDrawerClose={handleDrawerClose} showArrowBackIcon='true' />
             </Drawer>
-            
+
             <Drawer
                 variant="permanent"
                 sx={{
+                    width: drawerWidth,
                     display: { xs: 'none', sm: 'fixed' },
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                    '& .MuiDrawer-paper': {
+                        width: drawerWidth,
+                        boxSizing: 'border-box'
+                    },
                     paddingLeft: drawerWidth
                 }}
                 open>

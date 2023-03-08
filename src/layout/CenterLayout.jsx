@@ -9,7 +9,6 @@ const style = {
   alignItems: 'center',
   maxWidth: '100vw !important',
   minWidth: '100vw !important'
-
 }
 
 function CenterLayout(props) {

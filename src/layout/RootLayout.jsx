@@ -16,7 +16,7 @@ function RootLayout() {
     minWidth: '100vw',
     margin: '0px',
     padding: '0px',
-    marginLeft: windowSize.width > 600 ? '240px' : ''
+    marginLeft: windowSize.width > 600 ? '230px' : ''
   }
   return (
     <>
