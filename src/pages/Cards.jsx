@@ -8,12 +8,13 @@ import { Button } from '@mui/material';
 
 // NOTE - Card page based on the card set selection
 // NOTE - card set >>> card >>> feature and its overview
+// NOTE - Route shoule be link up with the card set
 function OverviewSection() {
     const COUNT_KEY = ['Total', 'Learned', 'Starred']
     const countSwitch = (countKey) => {
         switch (countKey) {
             case 'Total': return FLASH_CARDS_MOCK_DATA.length;
-            case 'Learned': return  FLASH_CARDS_MOCK_DATA.map(datum => datum.tag.filter(datumTag => datumTag == 'Learned')).flat().length
+            case 'Learned': return FLASH_CARDS_MOCK_DATA.map(datum => datum.tag.filter(datumTag => datumTag == 'Learned')).flat().length
             case 'Starred': return FLASH_CARDS_MOCK_DATA.map(datum => datum.tag.filter(datumTag => datumTag == 'Starred')).flat().length
             default: break
         }
@@ -26,6 +27,7 @@ function OverviewSection() {
                         key={countKey}
                         disableRipple={true}
                         variant="raised"
+                        onClick={() => { window.location.assign(`/${countKey.toLowerCase()}`) }}
                         sx={{
                             ":hover": {
                                 bgcolor: 'white'
