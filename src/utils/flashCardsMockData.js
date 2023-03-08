@@ -285,19 +285,19 @@ const FLASH_CARDS_MOCK_DATA = [
         uuid: 49,
         flashcardName: 'Flutter',
         meaning: 'Use Acceptance Test',
-        tag: ['Learned', 'Starred']
+        tag: ['Learned']
     },
     {
         uuid: 50,
         flashcardName: 'Flutter',
         meaning: 'Use Acceptance Test',
-        tag: ['Learned', 'Starred']
+        tag: ['Learned']
     },
     {
         uuid: 51,
         flashcardName: 'Flutter51',
         meaning: 'Use Acceptance Test',
-        tag: ['Learned', 'Starred']
+        tag: ['Learned']
     },
 ]
 

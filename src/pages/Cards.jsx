@@ -6,21 +6,18 @@ import { FLASH_CARDS_MOCK_DATA } from '../utils/flashCardsMockData'
 import { CardItem, CardFunctionButton } from '../components';
 import { Button } from '@mui/material';
 
+// NOTE - Card page based on the card set selection
+// NOTE - card set >>> card >>> feature and its overview
 function OverviewSection() {
     const COUNT_KEY = ['Total', 'Learned', 'Starred']
     const countSwitch = (countKey) => {
         switch (countKey) {
-            case 'Total': return FLASH_CARDS_MOCK_DATA.length
-            case 'Learned': return FLASH_CARDS_MOCK_DATA.map(datum => {
-                datum.tag.filter(datumTag => { datumTag !== 'Learned' })
-            }).length
-            case 'Starred': return FLASH_CARDS_MOCK_DATA.map(datum => {
-                datum.tag.filter(datumTag => { datumTag !== 'Learned' })
-            }).length
+            case 'Total': return FLASH_CARDS_MOCK_DATA.length;
+            case 'Learned': return  FLASH_CARDS_MOCK_DATA.map(datum => datum.tag.filter(datumTag => datumTag == 'Learned')).flat().length
+            case 'Starred': return FLASH_CARDS_MOCK_DATA.map(datum => datum.tag.filter(datumTag => datumTag == 'Starred')).flat().length
             default: break
         }
     }
-
     return (
         <Grid container direction="row" justifyContent="space-between" alignItems="center">
             {COUNT_KEY.map((countKey) => {

@@ -1,6 +1,7 @@
 import { Button, Grid } from '@mui/material'
 import React from 'react'
 
+// NOTE: based on card set, so after click the feature-buttons/ overview-buttons, the url should be /<CARD_SET>/<FEATURES> or /<CARD_SET>/<OVERVIEWS>
 const cardFunctions = [
     {
         functionName: 'Browse',
@@ -32,6 +33,7 @@ function CardFunctionButton() {
                     return (
                         <Grid item key={index}>
                             <Button
+                                onClick={() => { window.location.assign(`${datum.to}`) }}
                                 key={index}
                                 disableRipple={true}
                                 variant="raised"
@@ -48,13 +50,15 @@ function CardFunctionButton() {
                                     color: 'purple',
                                     width: '80px'
                                 }}>
-                                <div>
+                                <div style={{ marginTop: '10px' }}>
                                     <strong>{datum.functionName}</strong>
                                     <div>
                                         <img
                                             src={`../../src/assets/images/card_${datum.functionName.toLowerCase()}.png`}
                                             height={'60px'}
-                                            width={'50px'} />
+                                            width={'50px'}
+                                            style={{ marginTop: '3px' }}
+                                        />
                                     </div>
                                 </div>
                             </Button>
