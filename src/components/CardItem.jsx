@@ -7,7 +7,7 @@ function CardItem(props) {
         <Card style={{ width: '100%', height: '100%' }} key={index}>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Software Engineer Set
+                    {datum.cardSet}
                 </Typography>
                 <Typography variant="h5" component="div">
                     {datum.flashcardName}

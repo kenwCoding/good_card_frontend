@@ -1,10 +1,11 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { FLASH_CARDS_MOCK_DATA } from '../utils/flashCardsMockData'
 import { CardItem, CardFunctionButton } from '../components';
 import { Button } from '@mui/material';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 // NOTE - Card page based on the card set selection
 // NOTE - card set >>> card >>> feature and its overview
@@ -62,9 +63,45 @@ function OverviewSection() {
     )
 }
 
+function ChangeStudyOptionsSettingAndAddNewCards() {
+    return (
+        <Grid container direction="row" flexDirection='row-reverse' justifyContent="space-between" alignItems="center">
+            <Grid sx={{
+                paddingTop: '80px',
+                color: 'purple',
+            }}>
+                <Button
+                    variant="raised"
+                    disableRipple={true}
+                    sx={{
+                        ':hover': {
+                            bgcolor: 'transparent'
+                        }
+                    }}>
+                    <MoreVertIcon />
+                </Button>
+                <Button
+                    variant="raised"
+                    disableRipple={true}
+                    sx={{
+                        ':hover': {
+                            bgcolor: 'transparent'
+                        }
+                    }}>
+                    <AddBoxIcon />
+                </Button>
+            </Grid>
+        </Grid >
+    )
+}
+
 function Cards() {
+    const url = new URL(window.location.href)
+    const cardSetKey = url.searchParams.get('cardsets')
+
     return (
         <div>
+            <ChangeStudyOptionsSettingAndAddNewCards />
             <CardFunctionButton />
             <OverviewSection />
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>

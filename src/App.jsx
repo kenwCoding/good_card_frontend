@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { DevTest, Error, Home, Login, NotFound, Register, Cards } from './pages'
+import { DevTest, Error, Home, Login, NotFound, Register, Cards, CardSets } from './pages'
 import { RootLayout } from './layout'
 import { Protected } from './components'
 
@@ -15,6 +15,7 @@ function App() {
           <Route path="/" element={<Protected roles={['user']} element={<Home />} />} />
           <Route path="/error" element={<Error />} />
           <Route path="/dev" element={<DevTest />} />
+          <Route path="/cardsets" element={<CardSets />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
