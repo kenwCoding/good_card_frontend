@@ -28,7 +28,7 @@ const cardFunctions = [
 function CardFunctionButton() {
     return (
         <div>
-            <Grid container direction="row" alignItems="center" justifyContent="space-between">
+            <Grid container direction="row" alignItems="center" justifyContent="space-between" p="0">
                 {cardFunctions.map((datum, index) => {
                     return (
                         <Grid item key={index}>

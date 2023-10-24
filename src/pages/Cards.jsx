@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { FLASH_CARDS_MOCK_DATA } from '../utils/flashCardsMockData'
 import { CardItem, CardFunctionButton } from '../components';
-import { Button } from '@mui/material';
+import { Box, Button, Input, Modal, TextField } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
@@ -63,14 +63,50 @@ function OverviewSection() {
     )
 }
 
-function ChangeStudyOptionsSettingAndAddNewCards() {
+function addCardHandler() {
+
+}
+function AddCardModal({ open, handleClose }) {
+    return (
+        <Modal open={open}
+            onClose={handleClose}
+            aria-labelledby="parent-modal-title"
+            aria-describedby="parent-modal-description">
+            hello
+        </Modal>
+
+    )
+}
+function ChangeStudyOptionsSettingAndAddNewCards({ openFlag }) {
+    const [open, setOpen] = useState(openCardModel)
+    const handleOpen = () => {
+        openFlag(true);
+    };
+    const handleClose = () => {
+        openFlag(false);
+    };
     return (
         <Grid container direction="row" flexDirection='row-reverse' justifyContent="space-between" alignItems="center">
             <Grid sx={{
                 paddingTop: '80px',
                 color: 'purple',
             }}>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="child-modal-title"
+                    aria-describedby="child-modal-description"
+                >
+                    <Box sx={{ ...style, width: 200 }}>
+                        <h2 id="child-modal-title">Text in a child modal</h2>
+                        <p id="child-modal-description">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        </p>
+                        <Button onClick={handleClose}>Close Child Modal</Button>
+                    </Box>
+                </Modal>
                 <Button
+                    onClick={handleOpen}
                     variant="raised"
                     disableRipple={true}
                     sx={{
@@ -81,6 +117,7 @@ function ChangeStudyOptionsSettingAndAddNewCards() {
                     <MoreVertIcon />
                 </Button>
                 <Button
+                    onClick={handleOpen}
                     variant="raised"
                     disableRipple={true}
                     sx={{
@@ -95,13 +132,105 @@ function ChangeStudyOptionsSettingAndAddNewCards() {
     )
 }
 
+const modalStyle =
+{
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+};
+
 function Cards() {
     const url = new URL(window.location.href)
     const cardSetKey = url.searchParams.get('cardsets')
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const [cardName, setCardName] = useState("")
+    const [cardPartOfSpeech, setCardPartOfSpeech] = useState("")
+    const [cardCardDefinition, setCardDefinition] = useState("")
 
     return (
         <div>
-            <ChangeStudyOptionsSettingAndAddNewCards />
+            <Grid container direction="row" flexDirection='row-reverse' justifyContent="space-between" alignItems="center">
+                <Grid sx={{
+                    paddingTop: '50px',
+                    color: 'purple',
+                }}>
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="child-modal-title"
+                        aria-describedby="child-modal-description"
+                    >
+                        <Box sx={{ ...modalStyle, width: 200 }}>
+                            <h2 id="child-modal-title">Add New Card</h2>
+                            <TextField
+                                id="add-card-card-name"
+                                label="Card-name"
+                                // value={name}
+                                onChange={(event) => {
+                                    setCardName(event.target.value);
+                                }}
+                                margin="dense"
+                            />
+                            <TextField
+                                id="add-card-card-pof"
+                                label="Card-part-of-speech"
+                                // value={name}
+                                onChange={(event) => {
+                                    setCardPartOfSpeech(event.target.value);
+                                }}
+                                margin="dense"
+                            />
+
+                            <TextField
+                                id="add-card-card-def"
+                                label="Card-definition"
+                                // value={name}
+                                onChange={(event) => {
+                                    setCardDefinition(event.target.value);
+                                }}
+                                margin="dense"
+                            />
+                        </Box>
+                    </Modal>
+                    <Button
+                        onClick={() => { console.log('setting') }}
+                        variant="raised"
+                        disableRipple={true}
+                        sx={{
+                            ':hover': {
+                                bgcolor: 'transparent'
+                            }
+                        }}>
+                        <MoreVertIcon />
+                    </Button>
+                    <Button
+                        onClick={handleOpen}
+                        variant="raised"
+                        disableRipple={true}
+                        sx={{
+                            ':hover': {
+                                bgcolor: 'transparent'
+                            }
+                        }}>
+                        <AddBoxIcon />
+                    </Button>
+                </Grid>
+            </Grid>
             <CardFunctionButton />
             <OverviewSection />
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
