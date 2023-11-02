@@ -6,6 +6,7 @@ import { CardItem, CardFunctionButton } from '../components';
 import { Box, Button, Input, Modal, TextField } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import { v4 as uuidv4 } from 'uuid';
 
 // NOTE - Card page based on the card set selection
 // NOTE - card set >>> card >>> feature and its overview
@@ -140,7 +141,7 @@ const modalStyle =
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: '1px solid #000',
     boxShadow: 24,
     pt: 2,
     px: 4,
@@ -150,7 +151,7 @@ const modalStyle =
 function Cards() {
     const url = new URL(window.location.href)
     const cardSetKey = url.searchParams.get('cardsets')
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => {
         setOpen(true);
     };
@@ -158,9 +159,36 @@ function Cards() {
         setOpen(false);
     };
 
+
     const [cardName, setCardName] = useState("")
     const [cardPartOfSpeech, setCardPartOfSpeech] = useState("")
     const [cardCardDefinition, setCardDefinition] = useState("")
+    const [allowAddCardAction, setAllowAddCardAction] = useState(false)
+    const [newAddCard, setNewAddCard] = useState([])
+
+
+    const handleAddCardAction = (name, partOfSpeech, definition) => {
+        if (name && partOfSpeech && definition) {
+            setNewAddCard({
+                uuid: uuidv4(),
+                cardSet: ['Software Engineer Set'],
+                flashcardName: name,
+                // partOfSpeech,
+                meaning: definition,
+                tag: ['Learned']
+            })
+        }
+
+    }
+
+    console.log(newAddCard);
+    useEffect(() => {
+        if (cardName !== "" && cardPartOfSpeech !== "" && cardCardDefinition !== "") {
+            setAllowAddCardAction(true)
+        } else {
+            setAllowAddCardAction(false)
+        }
+    }, [cardName, cardPartOfSpeech, cardCardDefinition])
 
     return (
         <div>
@@ -205,6 +233,12 @@ function Cards() {
                                 }}
                                 margin="dense"
                             />
+
+                            <Button
+                                disabled={!allowAddCardAction}
+                                onClick={() => {
+                                    handleAddCardAction(cardName, cardPartOfSpeech, cardCardDefinition)
+                                }}>Set</Button>
                         </Box>
                     </Modal>
                     <Button
@@ -241,6 +275,9 @@ function Cards() {
                         </Grid>
                     )
                 })}
+                {newAddCard && <Grid item xs={2} sm={4} md={4} key={FLASH_CARDS_MOCK_DATA.length + 1}>
+                    <CardItem datum={newAddCard} index={FLASH_CARDS_MOCK_DATA.length + 1} />
+                </Grid>}
             </Grid>
         </div>
     );

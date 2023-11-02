@@ -23,7 +23,9 @@
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.8.0",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "uuid": "^9.0.1",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
